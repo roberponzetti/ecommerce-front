@@ -1,6 +1,7 @@
 import Login from "./Login";
 
 export const LoginRoute = {
-  path: "/login",
-  component: Login
-  }
+  path: "login",
+  component: Login,
+  isIndex: false,
+};

@@ -1,6 +1,7 @@
 import ProductDetail from "./ProductDetail";
 
 export const DetailRoute = {
-path: "details/:id",
-component: ProductDetail
-}
+  path: "detail/:id",
+  component: ProductDetail,
+  isIndex: false,
+};

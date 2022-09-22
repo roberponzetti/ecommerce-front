@@ -1,5 +1,5 @@
-import './App.css';
-import RoutesComponent from './routes/RoutesComponent';
+import "./App.css";
+import { RoutesComponent } from "./routes";
 
 function App() {
   return (

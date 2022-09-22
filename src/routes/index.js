@@ -1,1 +1,1 @@
-export * from './Routes';
+export { default as RoutesComponent } from "./RoutesComponent";

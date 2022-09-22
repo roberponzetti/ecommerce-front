@@ -1,6 +1,6 @@
-import React from 'react'
-import Carousel from '../container/components/carousel/Carousel'
-import ProductList from '../container/components/product-list/ProductList'
+import React from "react";
+import { Carousel } from "../container/components/carousel";
+import { ProductList } from "../container/components/product-list";
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <Carousel />
       <ProductList />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
