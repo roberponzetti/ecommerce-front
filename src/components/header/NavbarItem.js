@@ -1,6 +1,7 @@
 import React from 'react'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
-const Navbar = () => {
+const NavbarItem = () => {
   return (
     <Navbar bg="primary" variant="dark">
         <Container>
@@ -15,4 +16,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavbarItem

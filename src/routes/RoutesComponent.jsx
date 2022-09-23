@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "../components/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../firebase/config";
+import { productAction } from "../redux/state/product"
 
 const RoutesComponent = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getProducts().then(res => dispatch(productAction(res)));
+  }, [dispatch])
+
   return (
     <BrowserRouter>
       <Routes>
