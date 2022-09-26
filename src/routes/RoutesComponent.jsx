@@ -1,33 +1,12 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "../components/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { loadProducts, selectProduct } from "../redux/state/product";
-import { getProductsDataService } from "../firebase";
+import { useProduct } from "../hooks/useProduct";
 
 const RoutesComponent = () => {
-  const dispatch = useDispatch();
-
-  // Nos traemos los productos y los products que hay en el carrito, pasandole
-  // la función que creamos en el slice de producto
-  const { products, cart } = useSelector(selectProduct);
-  console.log(products, cart);
-
-  const getProducts = useCallback(async () => {
-    //Me traigo del Firebase la data de los productos, en este caso esta desacoplado la lógica
-    //de obtención de los datos del coponente. RouteComponent no le interesa si viene de Firebase o de un endpoint x
-    const data = await getProductsDataService();
-    //dispatch, es un Hook de Redux, que despacha la acción pasada cómo argumento. (loadProducts es un action creator)
-    //con la data que se le pase hacia el Reducer, en este caso seria el reducer "product"
-    dispatch(loadProducts(data));
-  }, [dispatch]);
-
-  useEffect(() => {
-    getProducts();
-  }, [dispatch, getProducts]);
-
+  useProduct();
   return (
     <BrowserRouter>
       <Routes>

@@ -8,7 +8,7 @@ const initialState = {
  Al despachar la acción con la información pasada, desde el componente RouteComponent
  llega hasta este reducer, ya que redux detecta a que reducer debe actualizar con los "Types"
  autocreados por redux Toolkit con el nombre que se le pone a "name" en el slice y el nombre de la
- acción. Por ejemplo: product/loadProducts
+ acción.
  */
 export const productSlice = createSlice({
   name: "product",
@@ -19,6 +19,7 @@ export const productSlice = createSlice({
       // state: es el estado incial de la aplicación, payload: viene la data que se le pasa
       // desde el componente, en este caso vendría el array de productos que se le envío desde
       // el componente route. Por convencion se llaman state y payload.
+
       state.products = payload;
     },
   },
