@@ -1,19 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "../components/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
 import { useDispatch } from "react-redux";
-import { getProducts } from "../firebase/config";
-import { productAction } from "../redux/state/product"
+import { loadProducts } from "../redux/state/product"
+import { getProductsDataService } from "../firebase";
 
 const RoutesComponent = () => {
 
   const dispatch = useDispatch();
 
+  const getProducts = useCallback( async() => {
+    const data = await getProductsDataService();
+    dispatch(loadProducts(data));
+  },[dispatch]
+  )
+
   useEffect(() => {
-    getProducts().then(res => dispatch(productAction(res)));
-  }, [dispatch])
+    getProducts();
+  }, [dispatch, getProducts]);
 
   return (
     <BrowserRouter>
@@ -23,7 +29,7 @@ const RoutesComponent = () => {
             <Route
               index={route.isIndex}
               key={key}
-              path={!route.isIndex ? route.path : false}
+              {...(!route.isIndex ? {path: route.path} : {})}
               element={<route.component />}
             />
           ))}
