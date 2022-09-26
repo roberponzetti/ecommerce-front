@@ -4,18 +4,16 @@ import { NotFound } from "../components/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
 import { useDispatch } from "react-redux";
-import { loadProducts } from "../redux/state/product"
+import { loadProducts } from "../redux/state/product";
 import { getProductsDataService } from "../firebase";
 
 const RoutesComponent = () => {
-
   const dispatch = useDispatch();
 
-  const getProducts = useCallback( async() => {
+  const getProducts = useCallback(async () => {
     const data = await getProductsDataService();
     dispatch(loadProducts(data));
-  },[dispatch]
-  )
+  }, [dispatch]);
 
   useEffect(() => {
     getProducts();
@@ -29,7 +27,7 @@ const RoutesComponent = () => {
             <Route
               index={route.isIndex}
               key={key}
-              {...(!route.isIndex ? {path: route.path} : {})}
+              {...(!route.isIndex ? { path: route.path } : {})}
               element={<route.component />}
             />
           ))}
