@@ -1,19 +1,27 @@
-import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import React from "react";
+import { Container, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import style from "./style.module.css";
 
 const NavbarItem = () => {
   return (
-    <Navbar bg="primary" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-  )
-}
+    <Navbar bg="dark" variant="dark" className="py-4">
+      <Container>
+        <div className="d-flex justify-content-center align-items-center">
+          <Link className={style.brand} to="/">
+            Home
+          </Link>
+          <Link className={`${style.outline} ${style.item_nav}`} to="/login">
+            login
+          </Link>
+        </div>
 
-export default NavbarItem
+        <Link className={`${style.outline} ${style.item_nav}`} to="/cart">
+          Carrito
+        </Link>
+      </Container>
+    </Navbar>
+  );
+};
+
+export default NavbarItem;

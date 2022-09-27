@@ -1,3 +1,11 @@
 .heightImage {
   height: 200px;
 }
+
+.fontSize_titleCard {
+  font-size: 18px !important;
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+  white-space: nowrap;
+}
