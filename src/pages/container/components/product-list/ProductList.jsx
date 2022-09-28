@@ -10,8 +10,15 @@ const ProductList = () => {
     <Container>
       <Row className="mt-5">
         {products.map((product, index) => (
-          <Col xs={12} md={4} lg={3} key={index} className="mt-5">
-            <Card className="p-3">
+          <Col
+            xs={12}
+            md={4}
+            lg={3}
+            key={index}
+            className="mt-5 position-relative"
+          >
+            <Card className={`p-3 ${style.container__card}`}>
+              <div className={style.bg_overlay}></div>
               <Card.Img
                 variant="top"
                 src={product.image !== "" ? product.image : ""}
@@ -22,14 +29,14 @@ const ProductList = () => {
                   {product.title}
                 </Card.Title>
                 <Card.Text>{product.shortDescription}</Card.Text>
-                <div className="mt-5 d-flex justify-content-center">
-                  <Button variant="outline-dark" className="mx-2">
-                    Detalle
-                  </Button>
-
-                  <Button variant="outline-dark">Agregar</Button>
-                </div>
               </Card.Body>
+              <div className={` position-absolute ${style.container_buttons}`}>
+                <Button variant="outline-light" className="mx-2">
+                  Detalle
+                </Button>
+
+                <Button variant="outline-light">Agregar</Button>
+              </div>
             </Card>
           </Col>
         ))}
