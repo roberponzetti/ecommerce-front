@@ -7,7 +7,7 @@ import style from "./style.module.css";
 
 const ProductList = () => {
   const { products } = useSelector(selectProduct);
-  console.log(products)
+
   return (
     <Container>
       <Row className="mt-5">
@@ -34,9 +34,9 @@ const ProductList = () => {
               </Card.Body>
               <div className={` position-absolute ${style.container_buttons}`}>
                 <Link to={`/detail/${product.id}`}>
-                <Button variant="outline-light" className="mx-2">
-                  Detalle
-                </Button>
+                  <Button variant="outline-light" className="mx-2">
+                    Detalle
+                  </Button>
                 </Link>
 
                 <Button variant="outline-light">Agregar</Button>

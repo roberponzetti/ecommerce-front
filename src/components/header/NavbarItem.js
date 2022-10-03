@@ -5,7 +5,7 @@ import style from "./style.module.css";
 
 const NavbarItem = () => {
   return (
-    <Navbar bg="dark" variant="dark" className="py-4">
+    <Navbar variant="dark" className={style.navBar}>
       <Container>
         <div className="d-flex justify-content-center align-items-center">
           <Link className={style.brand} to="/">
