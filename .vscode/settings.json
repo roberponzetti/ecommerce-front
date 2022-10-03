@@ -7,5 +7,11 @@
   "editor.formatOnType": true, // format code as you type
   "editor.formatOnSave": true, // format code when you hit save
   "files.trimTrailingWhitespace": true, // remove trailing white spaces from all lines
-  "files.trimFinalNewlines": true // Ensures there's only one blank line at the end of the file
+  "files.trimFinalNewlines": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  } // Ensures there's only one blank line at the end of the file
 }

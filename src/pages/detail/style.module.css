@@ -1,0 +1,46 @@
+
+.fontSize_titleCard {
+  font-size: 18px !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.container_buttons {
+  visibility: hidden;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50);
+  transform: translateY(-50%);
+}
+
+.bg_overlay {
+  transition: height 0.2s ease-in-out;
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+
+.container__card {
+  cursor: pointer;
+}
+
+.container__card:hover {
+  box-shadow: 0px 0px 8px 4px #aeaeae;
+  border: none !important;
+}
+
+.container__card:hover .bg_overlay {
+  visibility: visible;
+  height: 100%;
+}
+.container__card:hover .container_buttons {
+  visibility: visible;
+}
