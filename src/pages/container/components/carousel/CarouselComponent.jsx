@@ -3,7 +3,6 @@ import Carousel from "react-multi-carousel";
 import { useSelector } from "react-redux";
 import { selectProduct } from "../../../../redux/state/product";
 import { responsive } from "./config.carousel";
-
 import "react-multi-carousel/lib/styles.css";
 import style from "./style.module.css";
 
