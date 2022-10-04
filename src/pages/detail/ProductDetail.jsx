@@ -13,11 +13,14 @@ const ProductDetail = () => {
   const { isLoading } = useProductById(id);
   const { selectedProduct } = useSelector(selectProductById);
 
-  var priceFormatted = selectedProduct.price.toLocaleString('es-ar', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 2
-  });
+  if (selectedProduct.price !== undefined) {
+    var priceFormatted = selectedProduct.price.toLocaleString('es-ar', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 2
+    });
+  }
+
 
   if (isLoading) {
     return (
@@ -32,6 +35,7 @@ const ProductDetail = () => {
   return (
     <>
       {selectedProduct !== undefined ?
+
         <Container>
           <Row className="mt-5">
             <Col

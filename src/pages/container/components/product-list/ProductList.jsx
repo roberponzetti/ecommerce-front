@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "../../../../redux/state/product";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -7,6 +9,11 @@ import style from "./style.module.css";
 
 const ProductList = () => {
   const { products } = useSelector(selectProduct);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addProductToCart(product));
+  };
 
   return (
     <Container>
@@ -39,7 +46,7 @@ const ProductList = () => {
                   </Button>
                 </Link>
 
-                <Button variant="outline-light">Agregar</Button>
+                <Button variant="outline-light" onClick={() => handleAddToCart(product)}>Agregar</Button>
               </div>
             </Card>
           </Col>
