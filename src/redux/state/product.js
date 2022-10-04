@@ -2,7 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
-  cart: [],
+  cart: [
+    /*     {
+          category: "camisetas",
+          gender: "mujer",
+          image: "https://www.afashop.com.ar/ccstore/v1/images/?source=/file/v5997766564000424471/products/AFA_FH8571.png&height=300&width=300",
+          largeDescription: "camiseta afa copa america 2021",
+          price: 16000,
+          shortDescription: "camiseta afa mujer",
+          stock: 5,
+          title: "camiseta argentina 2022"
+        } */
+  ],
   selectedProduct: {}
 };
 /**
@@ -32,7 +43,17 @@ export const productByIdSlice = createSlice({
   reducers: {
     loadProductById: (state, { payload }) => {
       state.selectedProduct = payload;
-      console.log("SSP:", state.selectedProduct);
+    }
+  },
+});
+
+export const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addProductToCart: (state, { payload }) => {
+      state.cart = [...state.cart, payload];
+      console.log("Cart:", state.cart);
     }
   },
 });
@@ -41,10 +62,12 @@ export const productByIdSlice = createSlice({
 // para luego ser usados en los dispatch de los componentes para realizar alguna acción
 export const { loadProducts } = productSlice.actions;
 export const { loadProductById } = productByIdSlice.actions;
+export const { addProductToCart } = cartSlice.actions;
 
 // con esta función lo que hacemos es obtener la propiedad productos del estado
 // para luego, pasar esta función al useSelector en el componente que queramos para obtener la data
 export const selectProduct = (state) => state.products;
 export const selectProductById = (state) => state.selectedProduct;
+export const selectCart = (state) => state.cart;
 
 // Se exporta el reducer para colocarlo en el Store para que funcione correctamente

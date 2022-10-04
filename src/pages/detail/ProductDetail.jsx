@@ -32,6 +32,7 @@ const ProductDetail = () => {
   return (
     <>
       {selectedProduct !== undefined ?
+
         <Container>
           <Row className="mt-5">
             <Col
