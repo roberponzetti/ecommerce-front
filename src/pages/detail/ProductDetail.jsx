@@ -13,7 +13,7 @@ const ProductDetail = () => {
   const { isLoading } = useProductById(id);
   const { selectedProduct } = useSelector(selectProductById);
 
-  var priceFormatted = selectedProduct.price.toLocaleString('es-ar', {
+  var priceFormatted = selectedProduct.price?.toLocaleString('es-ar', {
     style: 'currency',
     currency: 'ARS',
     minimumFractionDigits: 2

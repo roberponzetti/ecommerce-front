@@ -1,12 +1,27 @@
 import React from "react";
+import { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CartNavbar from "../cart/CartNavbar";
 import style from "./style.module.css";
 
 const NavbarItem = () => {
+
+  const [hoverCart, setHoverCart] = useState(false);
+
+  const handleBoxToggle = () => {
+    setHoverCart(true)
+  }
+
+  const handleBoxLeaveToggle = () => {
+    setHoverCart(false)
+  }
+
   return (
     <Navbar variant="dark" className={style.navBar}>
       <Container>
+        {hoverCart && <div className={style.overlay}></div>}
+
         <div className="d-flex justify-content-center align-items-center">
           <Link className={style.brand} to="/">
             Home
@@ -15,10 +30,10 @@ const NavbarItem = () => {
             login
           </Link>
         </div>
-
-        <Link className={`${style.outline} ${style.item_nav}`} to="/cart">
+        <Link className={`${style.outline} ${style.item_nav}`} onMouseOver={handleBoxToggle} to="/cart">
           Carrito
         </Link>
+        {hoverCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
       </Container>
     </Navbar>
   );

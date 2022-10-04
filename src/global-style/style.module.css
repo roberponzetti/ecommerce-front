@@ -1,0 +1,27 @@
+.cursor_pointer {
+  cursor: pointer;
+}
+
+.ml_1 {
+  margin-left: 4px;
+}
+
+.ml_3 {
+  margin-left: 8px;
+}
+
+.ml_5 {
+  margin-left: 12px;
+}
+
+.mr_1 {
+  margin-right: 4px;
+}
+
+.mr_3 {
+  margin-right: 8px;
+}
+
+.mr_5 {
+  margin-right: 12px;
+}
