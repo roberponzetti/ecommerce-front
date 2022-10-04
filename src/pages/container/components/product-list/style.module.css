@@ -2,6 +2,10 @@
   height: 200px;
 }
 
+.fit_contain {
+  object-fit: contain;
+}
+
 .fontSize_titleCard {
   font-size: 18px !important;
   text-overflow: ellipsis;

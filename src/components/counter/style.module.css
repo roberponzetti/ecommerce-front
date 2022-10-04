@@ -1,0 +1,25 @@
+.button_substract {
+  margin-left: 10px;
+}
+
+.button_substract {
+  padding: 10px 10px;
+  background: #101010;
+  color: black;
+  color: white;
+  border: none;
+  color: darkkhaki;
+  font-weight: 500;
+}
+
+.button_add,
+.button_substract {
+  background-color: transparent;
+  padding: 5px 8px;
+  border: 1px solid #101010;
+  color: #101010;
+}
+
+.button_add {
+  margin-right: 10px;
+}

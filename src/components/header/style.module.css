@@ -7,6 +7,7 @@
 .navBar {
   background-color: darkkhaki;
   padding: 15px 0px !important;
+  position: relative;
 }
 
 .brand {
@@ -31,4 +32,32 @@
 .outline:hover {
   background-color: #9fa0a078;
   color: white;
+}
+
+.show_cart {
+  height: 200px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 2000;
+  height: 100vh;
+  border: 1px solid #e7e7e7;
+  background-color: white;
+  padding: 20px 30px;
+  min-width: 450px;
+  bottom: 0;
+}
+
+.overlay {
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
 }

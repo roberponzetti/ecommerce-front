@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { NotFound } from "../components/not-found";
+import { NotFound } from "../pages/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
 import { useProduct } from "../hooks/useProduct";

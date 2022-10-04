@@ -13,14 +13,11 @@ const ProductDetail = () => {
   const { isLoading } = useProductById(id);
   const { selectedProduct } = useSelector(selectProductById);
 
-  if (selectedProduct.price !== undefined) {
-    var priceFormatted = selectedProduct.price.toLocaleString('es-ar', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 2
-    });
-  }
-
+  var priceFormatted = selectedProduct.price?.toLocaleString('es-ar', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 2
+  });
 
   if (isLoading) {
     return (
@@ -42,7 +39,7 @@ const ProductDetail = () => {
               sm={6}
               className="mt-5 position-relative"
             >
-              <Image src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
+              <Image className={style.object_fit} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
             </Col>
             <Col>
               <h1>{selectedProduct.title}</h1>
