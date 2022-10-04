@@ -13,7 +13,7 @@ const ProductDetail = () => {
   const { isLoading } = useProductById(id);
   const { selectedProduct } = useSelector(selectProductById);
 
-  var priceFormatted = selectedProduct.price?.toLocaleString('es-ar', {
+  var priceFormatted = selectedProduct?.price?.toLocaleString('es-ar', {
     style: 'currency',
     currency: 'ARS',
     minimumFractionDigits: 2
@@ -47,13 +47,11 @@ const ProductDetail = () => {
               <h5>{selectedProduct.largeDescription}</h5>
               <br />
               <Button onClick={() => alert("Al carrito")}><BsFillCartFill /> Agregar al carrito</Button>
-
             </Col>
           </Row>
         </Container> :
         <Alert key="warning" variant="warning">
           Se produjo un error al mostrar el producto seleccionado.
-          Contacte a santiago
         </Alert>
       }
     </>

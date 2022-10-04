@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CartNavbar from "../cart/CartNavbar";
 import classNames from "classnames";
 import style from "./style.module.css";
+import { BsFillCartFill } from "react-icons/bs";
 
 const NavbarItem = () => {
 
@@ -32,7 +33,12 @@ const NavbarItem = () => {
           </Link>
         </div>
         <Link className={classNames(style.outline, style.item_nav)} onMouseOver={handleBoxToggle} to="/cart">
-          Carrito
+          <BsFillCartFill size={25} />
+          {1 !== 0 &&
+            <span className={classNames(style.badge, "rounded-pill", "badge-notification")}>
+              1
+            </span>
+          }
         </Link>
         {hoverCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
       </Container>
