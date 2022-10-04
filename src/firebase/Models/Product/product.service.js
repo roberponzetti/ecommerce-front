@@ -9,4 +9,13 @@ export const getProductsDataService = async () => {
     } catch (error) {
       console.error(error.message);
     }
-  };
+};
+
+export const getProductByIdDataService = async (id) => {
+    try {
+      const product = new Product(NAME_COLLECTION);
+      return await product.getProductById(id);
+    } catch (error) {
+      console.error(error.message);
+    }
+};

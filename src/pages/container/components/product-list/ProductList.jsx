@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectProduct } from "../../../../redux/state/product";
@@ -6,6 +7,7 @@ import style from "./style.module.css";
 
 const ProductList = () => {
   const { products } = useSelector(selectProduct);
+
   return (
     <Container>
       <Row className="mt-5">
@@ -31,9 +33,11 @@ const ProductList = () => {
                 <Card.Text>{product.shortDescription}</Card.Text>
               </Card.Body>
               <div className={` position-absolute ${style.container_buttons}`}>
-                <Button variant="outline-light" className="mx-2">
-                  Detalle
-                </Button>
+                <Link to={`/detail/${product.id}`}>
+                  <Button variant="outline-light" className="mx-2">
+                    Detalle
+                  </Button>
+                </Link>
 
                 <Button variant="outline-light">Agregar</Button>
               </div>
