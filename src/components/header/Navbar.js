@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartNavbar from "../cart/CartNavbar";
+import classNames from "classnames";
 import style from "./style.module.css";
 
 const NavbarItem = () => {
@@ -26,11 +27,11 @@ const NavbarItem = () => {
           <Link className={style.brand} to="/">
             Home
           </Link>
-          <Link className={`${style.outline} ${style.item_nav}`} to="/login">
+          <Link className={classNames(style.outline, style.item_nav)} to="/login">
             login
           </Link>
         </div>
-        <Link className={`${style.outline} ${style.item_nav}`} onMouseOver={handleBoxToggle} to="/cart">
+        <Link className={classNames(style.outline, style.item_nav)} onMouseOver={handleBoxToggle} to="/cart">
           Carrito
         </Link>
         {hoverCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}

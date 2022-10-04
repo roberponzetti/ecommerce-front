@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectProduct } from "../../../../redux/state/product";
+import classNames from "classnames";
 import style from "./style.module.css";
 
 const ProductList = () => {
@@ -19,12 +20,12 @@ const ProductList = () => {
             key={index}
             className="mt-5 position-relative"
           >
-            <Card className={`p-3 ${style.container__card}`}>
+            <Card className={classNames('p-5', style.container__card)}>
               <div className={style.bg_overlay}></div>
               <Card.Img
                 variant="top"
                 src={product.image !== "" ? product.image : ""}
-                className={style.heightImage}
+                className={classNames(style.heightImage, style.fit_contain)}
               />
               <Card.Body>
                 <Card.Title className={style.fontSize_titleCard}>
@@ -32,7 +33,7 @@ const ProductList = () => {
                 </Card.Title>
                 <Card.Text>{product.shortDescription}</Card.Text>
               </Card.Body>
-              <div className={` position-absolute ${style.container_buttons}`}>
+              <div className={classNames('position-absolute', style.container_buttons)}>
                 <Link to={`/detail/${product.id}`}>
                   <Button variant="outline-light" className="mx-2">
                     Detalle
