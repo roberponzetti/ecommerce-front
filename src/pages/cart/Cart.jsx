@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCart } from '../../redux/state/product';
 import { Card, Col, Alert } from "react-bootstrap";
 import style from "./style.module.css";
+import { selectCart } from "../../redux/state/cart";
 
 const Cart = () => {
 

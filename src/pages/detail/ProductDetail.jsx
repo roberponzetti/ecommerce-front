@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { selectProductById } from '../../redux/state/product';
+import { selectProduct } from '../../redux/state/product';
 import { useProductById } from '../../hooks/useProductById';
-import { Alert, Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { BsFillCartFill } from "react-icons/bs";
 import style from "./style.module.css";
+import classNames from 'classnames';
+
 
 const ProductDetail = () => {
 
   const { id } = useParams();
   const { isLoading } = useProductById(id);
-  const { selectedProduct } = useSelector(selectProductById);
+  const { selectedProduct } = useSelector(selectProduct);
+  const outStock = selectedProduct?.stock === 0;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   var priceFormatted = selectedProduct?.price?.toLocaleString('es-ar', {
     style: 'currency',
@@ -32,26 +39,28 @@ const ProductDetail = () => {
   return (
     <>
       {selectedProduct !== undefined ?
-
-        <Container>
-          <Row className="mt-5">
+        <Container className='mt-5 d-flex justify-content-center align-items-center'>
+          <Row className="mt-5 d-flex justify-content-center align-items-center">
             <Col
-              sm={6}
-              className="mt-5 position-relative"
+              sm={4}
+              className="mt-5"
             >
-              <Image className={style.object_fit} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
+              <Image className={classNames(style.object_fit, style.image_product)} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
             </Col>
-            <Col>
-              <h1>{selectedProduct.title}</h1>
-              <h2>{priceFormatted}</h2>
-              <h4>{selectedProduct.shortDescription}</h4>
-              <h5>{selectedProduct.largeDescription}</h5>
+            <Col sm={7}>
+              <h2 className={style.title_product}>{selectedProduct.title}</h2>
+              <span className={style.price_formatted}>{priceFormatted}</span>
+              <p className={style.short_description}>{selectedProduct.shortDescription}</p>
+              <p className={style.large_description}>{selectedProduct.largeDescription}</p>
               <br />
-              <Button onClick={() => alert("Al carrito")}><BsFillCartFill /> Agregar al carrito</Button>
+
+              <button {...(outStock ? { disabled: "disabled" } : {})} className={classNames(style.button_add_cart, { [style.disabled]: outStock })} onClick={() => alert("Al carrito")}><BsFillCartFill /> Agregar al carrito</button>
+              <span className={classNames('d-block mt-3', style.stock)}>( Stock {selectedProduct.stock} )</span>
             </Col>
           </Row>
-        </Container> :
-        <Alert key="warning" variant="warning">
+        </Container>
+        :
+        <Alert className={style.margin_top} variant="danger">
           Se produjo un error al mostrar el producto seleccionado.
         </Alert>
       }

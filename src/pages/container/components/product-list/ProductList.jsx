@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "../../../../redux/state/product";
+import { selectProduct } from "../../../../redux/state/product";
+import { addProductToCart } from "../../../../redux/state/cart";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { selectProduct } from "../../../../redux/state/product";
 import classNames from "classnames";
 import style from "./style.module.css";
+import Swal from "sweetalert2";
 
 const ProductList = () => {
   const { products } = useSelector(selectProduct);
@@ -14,6 +15,13 @@ const ProductList = () => {
 
   const handleAddToCart = (product) => {
     dispatch(addProductToCart(product));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Producto agregado al carrito',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
 
   return (
@@ -27,7 +35,7 @@ const ProductList = () => {
             key={index}
             className="mt-5 position-relative"
           >
-            <Card className={classNames('p-5', style.container__card)}>
+            <Card className={classNames('p-3', style.container__card)}>
               <div className={style.bg_overlay}></div>
               <Card.Img
                 variant="top"

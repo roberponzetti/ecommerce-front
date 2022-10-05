@@ -17,7 +17,7 @@ const CarouselComponent = () => {
     .slice(0, 9);
 
   return (
-    <div className="mt-5">
+    <div className={style.margin_top}>
       <Carousel
         itemClass={style.center_items}
         autoPlaySpeed={5000}

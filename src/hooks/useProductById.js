@@ -12,7 +12,9 @@ export const useProductById = (id) => {
     setIsLoading(true);
     const data = await getProductByIdDataService(id);
     setIsLoading(false);
+
     dispatch(loadProductById(data));
+
   }, [dispatch, id]);
 
   useEffect(() => {

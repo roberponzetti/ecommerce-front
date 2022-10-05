@@ -7,7 +7,10 @@
 .navBar {
   background-color: #bdb76b;
   padding: 15px 0px !important;
-  position: relative;
+  position: fixed !important;
+  width: 100%;
+  z-index: 3000;
+  top: 0;
 }
 
 .brand {
@@ -16,12 +19,14 @@
   font-size: 18px;
   text-decoration: none;
   margin-right: 20px;
+  font-weight: 300;
 }
 
 .item_nav {
   color: white;
   text-decoration: none;
   margin-right: 7px;
+  border-radius: inherit;
 }
 
 .item_nav,

@@ -5,3 +5,7 @@
 p {
   margin: 0px;
 }
+
+.btn {
+  border-radius: inherit !important;
+}
