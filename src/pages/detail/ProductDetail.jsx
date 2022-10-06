@@ -6,7 +6,7 @@ import { useProductById } from '../../hooks/useProductById';
 import { Alert, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { BsFillCartFill } from "react-icons/bs";
 import style from "./style.module.css";
-import classNames from 'classnames';
+import clx from 'classnames';
 
 
 const ProductDetail = () => {
@@ -29,7 +29,7 @@ const ProductDetail = () => {
   if (isLoading) {
     return (
       <div className='container d-flex justify-content-center align-items-center vh-100'>
-        <Spinner animation="border" role="status" variant="primary">
+        <Spinner animation="border" role="status" variant="dark">
           <span className="visually-hidden">Loading...</span>
         </Spinner >
       </div>
@@ -37,15 +37,15 @@ const ProductDetail = () => {
   }
 
   return (
-    <>
-      {selectedProduct !== undefined ?
+    <div className='vh-100 d-flex align-items-center justify-content-center'>
+      {selectedProduct !== null ?
         <Container className='mt-5 d-flex justify-content-center align-items-center'>
           <Row className="mt-5 d-flex justify-content-center align-items-center">
             <Col
               sm={4}
-              className="mt-5"
+
             >
-              <Image className={classNames(style.object_fit, style.image_product)} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
+              <Image className={clx(style.object_fit, style.image_product)} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
             </Col>
             <Col sm={7}>
               <h2 className={style.title_product}>{selectedProduct.title}</h2>
@@ -54,8 +54,8 @@ const ProductDetail = () => {
               <p className={style.large_description}>{selectedProduct.largeDescription}</p>
               <br />
 
-              <button {...(outStock ? { disabled: "disabled" } : {})} className={classNames(style.button_add_cart, { [style.disabled]: outStock })} onClick={() => alert("Al carrito")}><BsFillCartFill /> Agregar al carrito</button>
-              <span className={classNames('d-block mt-3', style.stock)}>( Stock {selectedProduct.stock} )</span>
+              <button {...(outStock ? { disabled: "disabled" } : {})} className={clx(style.button_add_cart, { [style.disabled]: outStock })} onClick={() => alert("Al carrito")}><BsFillCartFill /> Agregar al carrito</button>
+              <span className={clx('d-block mt-3', style.stock)}>( Stock {selectedProduct.stock} )</span>
             </Col>
           </Row>
         </Container>
@@ -64,7 +64,7 @@ const ProductDetail = () => {
           Se produjo un error al mostrar el producto seleccionado.
         </Alert>
       }
-    </>
+    </div>
   )
 }
 

@@ -27,6 +27,12 @@
   z-index: 1;
 }
 
+.empty_cart {
+  font-size: 18px;
+  font-weight: 300;
+  color: #aeaeae;
+}
+
 .button_cart {
   padding: 10px 100px;
   background: #101010;

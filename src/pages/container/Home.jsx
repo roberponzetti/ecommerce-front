@@ -6,6 +6,8 @@ const Home = () => {
   return (
     <React.Fragment>
       <CarouselComponent />
+      <h1 className="mt-5">Productos</h1>
+
       <ProductList />
     </React.Fragment>
   );

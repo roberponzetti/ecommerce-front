@@ -23,13 +23,15 @@ export class Product extends Firebase {
 
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
+    if (!docSnap.exists()) {
+      return {
+        data: null,
+        error: "Not found product by id " + id
+      }
     }
-    const selectedProduct = docSnap.data();
-    return selectedProduct;
+    return {
+      data: docSnap.data(),
+      error: "",
+    }
   }
 }

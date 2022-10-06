@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
   products: [],
-  selectedProduct: {}
+  selectedProduct: {},
+  count: 8,
 };
 
 export const productSlice = createSlice({
@@ -10,14 +12,24 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     loadProducts: (state, { payload }) => {
-      state.products = payload;
+      state.products = payload
     },
     loadProductById: (state, { payload }) => {
       state.selectedProduct = payload;
-    }
+    },
+
+    showMore: (state, { payload }) => {
+      if (state.count + 3 <= state.products.length) {
+        state.count = state.count + 3
+      } else {
+        state.count = payload.length
+      }
+    },
+
+
   },
 });
 
-export const { loadProducts, loadProductById } = productSlice.actions;
+export const { loadProducts, loadProductById, showMore } = productSlice.actions;
 
 export const selectProduct = (state) => state.products;

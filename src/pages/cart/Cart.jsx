@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import { Card, Col, Alert } from "react-bootstrap";
 import style from "./style.module.css";
 import { selectCart } from "../../redux/state/cart";
+import clx from "classnames";
 
 const Cart = () => {
 
   const { cart } = useSelector(selectCart);
 
   return (
-    console.log("CART: ", cart),
+
     <>
       {
         cart !== undefined ?
@@ -21,7 +22,7 @@ const Cart = () => {
               key={index}
               className="mt-5 position-relative"
             >
-              <Card className={`p-3 ${style.container__card}`}>
+              <Card className={clx("p3", style.container__card)}>
                 <div className={style.bg_overlay}></div>
                 <Card.Img
                   variant="top"

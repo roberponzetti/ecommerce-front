@@ -52,3 +52,26 @@
 .container__card:hover .container_buttons {
   visibility: visible;
 }
+
+.button_add_cart {
+  padding: 10px 15px;
+  color: black;
+  color: white;
+  margin-top: 15px;
+  border: 1px solid #101010;
+  color: darkkhaki;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+}
+
+.button_add_cart:hover {
+  background-color: #1f1f1f;
+  color: darkkhaki;
+  border: 1px solid white;
+}
+
+.font_size {
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}

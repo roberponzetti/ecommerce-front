@@ -17,11 +17,12 @@ const CarouselComponent = () => {
     .slice(0, 9);
 
   return (
-    <div className={style.margin_top}>
+    <div className={style.margin}>
       <Carousel
         itemClass={style.center_items}
-        autoPlaySpeed={5000}
+        autoPlaySpeed={3000}
         autoPlay={true}
+        infinite={true}
         responsive={responsive}
       >
         {filteredProducts.map((product, index) => (
