@@ -13,13 +13,13 @@ import { priceFormatted } from '../../../../utilities';
 const ModalAddQuantity = ({ showModal, handleOpenModal, product }) => {
 
   const dispatch = useDispatch();
-  const { count, incrementAmount, decrementAmount } = useCounter();
+  const { count, incrementAmount, decrementAmount, setCount } = useCounter();
 
   const outStock = product?.stock === 0 || count > product?.stock;
 
   const handleAddToCart = () => {
     dispatch(addQuantity({ id: product.id, quantity: count, product: product }));
-
+    setCount(1);
   };
 
   return (

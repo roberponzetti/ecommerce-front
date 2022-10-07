@@ -37,8 +37,8 @@ const ProductDetail = () => {
     <Fragment>
       <GoBack />
       {selectedProduct !== null ?
-        <Container className='d-flex justify-content-center align-items-center'>
-          <Row className="d-flex justify-content-center align-items-center">
+        <Container className='d-flex justify-content-center align-items-center mt-5'>
+          <Row className="d-flex justify-content-center align-items-center ">
             <Col
               sm={4}
             >
