@@ -68,6 +68,9 @@
 }
 
 .badge {
-  background-color: #938f8f;
+  background-color: #ffffff;
   padding: 0px 6px;
+  font-size: 15px;
+  color: rgb(20, 20, 20);
+  font-weight: 500;
 }

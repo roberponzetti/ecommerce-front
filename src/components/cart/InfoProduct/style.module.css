@@ -3,3 +3,17 @@
   font-weight: bold;
   color: #101010;
 }
+.stock {
+  font-size: 14px;
+  margin-top: 5px;
+  color: rgb(193, 193, 193);
+  font-weight: 500;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

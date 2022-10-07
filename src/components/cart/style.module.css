@@ -27,6 +27,12 @@
   z-index: 1;
 }
 
+.button_vaciar {
+  font-size: 14px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
 .empty_cart {
   font-size: 18px;
   font-weight: 300;

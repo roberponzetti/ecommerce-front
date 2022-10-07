@@ -1,0 +1,20 @@
+.button_goback {
+  padding: 6px 7px;
+  background-color: transparent;
+  border: 1px solid rgb(176, 176, 176);
+  color: #bdb76b;
+  margin-top: 90px;
+  transition: background-color ease 500ms;
+}
+
+.button_goback:hover {
+  color: white;
+  background-color: rgb(35, 35, 35);
+  border: 1px solid #ffffff;
+}
+
+.container_button {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}

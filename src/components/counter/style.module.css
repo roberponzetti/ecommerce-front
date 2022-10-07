@@ -26,3 +26,7 @@
 .button_add {
   margin-right: 10px;
 }
+
+.error {
+  cursor: not-allowed;
+}

@@ -1,4 +1,4 @@
-export const priceFormatted = (price, currency = "ARS", minimunDigits = 2) => price.toLocaleString('es-ar', {
+export const priceFormatted = (price = 0, currency = "ARS", minimunDigits = 2) => price.toLocaleString('es-ar', {
   style: 'currency',
   currency: currency,
   minimumFractionDigits: minimunDigits

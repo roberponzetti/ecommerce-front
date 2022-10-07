@@ -33,11 +33,14 @@
 
 .title_product {
   font-weight: 400;
+  font-size: 40px;
 }
 
 .price_formatted {
-  font-weight: 400;
-  font-size: 27px;
+  font-weight: 800;
+  font-size: 33px;
+
+  letter-spacing: 1px;
 }
 
 .short_description,
@@ -50,28 +53,14 @@
   margin-top: 10px;
 }
 
-.button_add_cart {
-  padding: 10px 30px;
-  color: black;
-  color: white;
-  margin-top: 15px;
-  border: 1px solid #101010;
-  color: darkkhaki;
-  font-weight: 500;
-  transition: transform 0.2s ease-in-out;
-  background-color: transparent;
-}
-
 .image_product {
-  margin-right: 250px;
+  margin-right: 300px;
+  transition: all 500ms;
+  height: 400px;
+  width: 400px;
 }
 
-.disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.button_add_cart:hover {
+.image_product:hover {
   transform: scale(1.1);
 }
 

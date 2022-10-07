@@ -9,11 +9,12 @@ export const useProductById = (id) => {
   const dispatch = useDispatch();
 
   const getProductById = useCallback(async () => {
+
     setIsLoading(true);
     const { data, error } = await getProductByIdDataService(id);
-    setIsLoading(false);
 
     dispatch(loadProductById(data));
+    setIsLoading(false)
   }, [dispatch, id]);
 
   useEffect(() => {

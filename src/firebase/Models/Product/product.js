@@ -30,7 +30,7 @@ export class Product extends Firebase {
       }
     }
     return {
-      data: docSnap.data(),
+      data: { ...docSnap.data(), id: docSnap.id },
       error: "",
     }
   }

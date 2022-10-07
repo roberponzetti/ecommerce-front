@@ -1,80 +1,64 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { swalAlert } from "../../utilities/alert";
+import globalStyle from "../../global-style/style.module.css";
+import { clearLocalStorage, getLocalStorage, setLocalStorage } from "../../utilities/localStorage";
+
+const KEY = "CART";
 
 const initialState = {
-  cart: [],
+  cart: getLocalStorage(KEY) ? getLocalStorage(KEY) : []
 };
 
-export const findProduct = (state, id) => current(state).cart.find((product) => product.id === id);
+const findProduct = (state, id) => state.cart.find((product) => product.id === id);
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProductToCart: (state, { payload }) => {
-      let productAddedQuantity;
+    addQuantity: (state, { payload }) => {
+
       let currentProduct = findProduct(state, payload.id);
+
+      if (payload.product.stock === 0) {
+        swalAlert("error", "Producto sin stock", globalStyle.alert);
+        return;
+      };
+
+      if (payload.quantity + currentProduct?.quantity > payload.product.stock) {
+        currentProduct.quantity = payload.product.stock
+        swalAlert("error", "Producto sin stock", globalStyle.alert);
+        return;
+      }
 
       if (currentProduct) {
-        productAddedQuantity = {
-          ...payload,
-          quantity: currentProduct.quantity + 1
-        }
-
-        const resp = current(state).cart.map(product => {
-          if (product.id === currentProduct.id) {
-            return productAddedQuantity
-          }
-          return product
-        })
-
-        state.cart = resp
+        currentProduct.quantity = currentProduct.quantity + payload.quantity;
       }
       else {
-        productAddedQuantity = {
-          ...payload,
-          quantity: 1
-        }
-        state.cart = [...state.cart, productAddedQuantity];
+        state.cart.push({
+          ...payload.product,
+          quantity: payload.quantity
+        })
       }
-    },
 
-    addQuantity: (state, { payload }) => {
-      let currentProduct = findProduct(state, payload.id);
+      swalAlert("success", "Producto agregado al carrito", globalStyle.alert);
+      setLocalStorage(KEY, state.cart);
 
-      const resp = current(state).cart.map(product => {
-        if (product.id === currentProduct.id) {
-          return {
-            ...currentProduct,
-            quantity: currentProduct.quantity + payload.quantity
-          }
-        }
-        return product
-      })
-
-      state.cart = resp;
     },
 
     subtractQuantity: (state, { payload }) => {
       let currentProduct = findProduct(state, payload.id);
-
-      const resp = current(state).cart.map(product => {
-        if (product.id === currentProduct.id) {
-          return {
-            ...currentProduct,
-            quantity: currentProduct.quantity - payload.quantity
-          }
-        }
-        return product
-      })
-
-      state.cart = resp;
+      if (currentProduct) currentProduct.quantity = currentProduct.quantity - payload.quantity
+      setLocalStorage(KEY, state.cart);
     },
+
     deleteProduct: (state, { payload }) => {
-      const resp = current(state).cart.filter((product) => product.id !== payload);
-      state.cart = resp;
+      const arrayWithoutProduct = state.cart.filter((product) => product.id !== payload);
+      setLocalStorage(KEY, arrayWithoutProduct);
+      state.cart = arrayWithoutProduct;
     },
 
     clearCart: () => {
+      clearLocalStorage();
       return initialState
     }
   },

@@ -4,7 +4,7 @@ import { BsTrash } from "react-icons/bs";
 import InfoProduct from '../InfoProduct/InfoProduct';
 import styleGlobal from '../../../global-style/style.module.css'
 import { useDispatch } from 'react-redux';
-import { deleteProduct } from '../../../redux/state/cart';
+import { addQuantity, deleteProduct, subtractQuantity } from '../../../redux/state/cart';
 
 const ItemCart = ({ product }) => {
 
@@ -14,11 +14,24 @@ const ItemCart = ({ product }) => {
     dispatch(deleteProduct(product.id));
   }
 
+  const handleAddQuantityProductToCart = () => {
+    dispatch(addQuantity({ id: product.id, quantity: 1, product }));
+  }
+
+  const handleSubtractQuantityProductToCart = () => {
+    dispatch(subtractQuantity({ id: product.id, quantity: 1, product }));
+  }
+
   return (
     <div className="d-flex justify-content-between mt-4 w-100 align-items-center" >
       <InfoProduct product={product} />
       <div className='d-flex align-items-center'>
-        <Counter quantity={product.quantity} idProduct={product.id} stock={product.stock} />
+        <Counter
+          handleAddQuantity={handleAddQuantityProductToCart}
+          handleSubtractQuantity={handleSubtractQuantityProductToCart}
+          product={product}
+          currentAmount={product.quantity}
+        />
         <BsTrash onClick={handleDeleteProduct} className={styleGlobal.cursor_pointer} />
       </div>
 

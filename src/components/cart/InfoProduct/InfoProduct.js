@@ -7,6 +7,7 @@ import { priceFormatted } from '../../../utilities';
 
 const InfoProduct = ({ product }) => {
 
+  const hasStock = product.quantity > product.stock
 
   return (
     <>
@@ -14,6 +15,7 @@ const InfoProduct = ({ product }) => {
       <div className='d-flex flex-column'>
         <p className={styleGlobal.mr_3}>{product.title}</p>
         <p className={clx(style.price_product)}>{priceFormatted(product.price)}</p>
+        <p className={clx(style.stock, { [style.error]: hasStock, [style.success]: !hasStock })}>({product.stock} disponibles )</p>
       </div>
     </>
   )

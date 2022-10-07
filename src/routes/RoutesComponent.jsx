@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from "../components/loading/Loading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "../pages/not-found";
 import { routes } from "../pages/routes";
@@ -6,7 +7,10 @@ import { Layout } from "../components/Layout";
 import { useProduct } from "../hooks/useProduct";
 
 const RoutesComponent = () => {
-  useProduct();
+  const { isLoading } = useProduct();
+
+  if (isLoading) return <Loading />
+
   return (
     <BrowserRouter>
       <Routes>

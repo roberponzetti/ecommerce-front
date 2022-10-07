@@ -1,25 +1,23 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { addQuantity, subtractQuantity } from '../../redux/state/cart';
 import style from "./style.module.css";
+import clsx from 'classnames';
 
-const Counter = ({ quantity, idProduct, stock }) => {
-
-  const dispatch = useDispatch();
-
-  const handleAddQuantityProductToCart = () => {
-    dispatch(addQuantity({ id: idProduct, quantity: 1 }));
-  }
-
-  const handleSubtractQuantityProductToCart = () => {
-    dispatch(subtractQuantity({ id: idProduct, quantity: 1 }));
-  }
+const Counter = ({ handleAddQuantity, currentAmount, product, handleSubtractQuantity }) => {
 
   return (
     <div>
-      <button disabled={quantity <= 1} onClick={handleSubtractQuantityProductToCart} className={style.button_substract}>-</button>
-      <span >{quantity}</span>
-      <button disabled={stock === quantity} onClick={handleAddQuantityProductToCart} className={style.button_add}>+</button>
+      <button disabled={product?.quantity <= 1}
+        onClick={handleSubtractQuantity}
+        className={style.button_substract}>
+        -
+      </button>
+      <span >{currentAmount}</span>
+      <button
+        disabled={product?.quantity === product?.stock}
+        onClick={handleAddQuantity}
+        className={clsx(style.button_add, { [style.error]: product?.quantity === product?.stock })}>
+        +
+      </button>
     </div>
   )
 }
