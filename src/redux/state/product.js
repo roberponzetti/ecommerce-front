@@ -18,11 +18,11 @@ export const productSlice = createSlice({
       state.selectedProduct = payload;
     },
 
-    showMore: (state, { payload }) => {
-      if (state.count + 3 <= state.products.length) {
-        state.count = state.count + 3
+    showMore: (state) => {
+      if (state.count + 5 <= state.products.length) {
+        state.count = state.count + 5
       } else {
-        state.count = payload.length
+        state.count = state.products.length
       }
     },
 

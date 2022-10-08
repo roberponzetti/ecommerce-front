@@ -20,7 +20,7 @@ const ProductList = () => {
   const dispatch = useDispatch();
 
   const handleShowMore = () => {
-    dispatch(showMore(3));
+    dispatch(showMore());
   }
 
   const handleToDetail = (id) => {
