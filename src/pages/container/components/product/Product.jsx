@@ -13,7 +13,6 @@ const Product = ({ product, handleToDetail, handleOpenModal }) => {
       xs={12}
       md={4}
       lg={3}
-
       className="mt-5 position-relative"
     >
       <Card className={clx('p-3', style.container__card)}>

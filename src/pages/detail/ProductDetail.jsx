@@ -62,7 +62,7 @@ const ProductDetail = () => {
                   currentAmount={count}
                 />
               </div>
-              <span className={clx('d-block mt-3', style.stock)}>
+              <span className={clx('d-block mt-3', style.stock, { [style.error]: outStock, [style.success]: !outStock })}>
                 ( {selectedProduct.stock} disponibles )
               </span>
             </Col>
@@ -76,7 +76,6 @@ const ProductDetail = () => {
             </Alert>
           </Col>
         </Row>
-
       }
     </Fragment>
   )

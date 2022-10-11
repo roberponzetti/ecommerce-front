@@ -4,3 +4,17 @@
   color: rgb(193, 193, 193);
   font-weight: 500;
 }
+
+.error,
+.success {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

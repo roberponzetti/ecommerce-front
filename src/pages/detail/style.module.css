@@ -74,3 +74,17 @@
 .margin_top {
   margin-top: 50px;
 }
+
+.error,
+.success {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

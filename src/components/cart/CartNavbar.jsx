@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ItemCart from './ItemCart/ItemCart';
 import style from "./style.module.css";
 import globalStyle from "../../global-style/style.module.css";

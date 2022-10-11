@@ -49,7 +49,7 @@ const ModalAddQuantity = ({ showModal, handleOpenModal, product }) => {
               currentAmount={count}
             />
           </div>
-          <span className={clx('d-block mt-3', style.stock)}>( {product?.stock} disponibles )</span>
+          <span className={clx('d-block mt-4', style.stock, { [style.error]: outStock, [style.success]: !outStock })}>( {product?.stock} disponibles )</span>
         </Modal.Body>
       </Modal>
 
