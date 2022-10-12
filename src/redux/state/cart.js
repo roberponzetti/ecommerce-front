@@ -25,12 +25,14 @@ export const cartSlice = createSlice({
       };
 
       if (payload.quantity + currentProduct?.quantity > payload.product.stock) {
+        console.log(`entro ${currentProduct?.quantity} | ${payload.product.stock} `);
         currentProduct.quantity = payload.product.stock
         swalAlert("error", "Producto sin stock", globalStyle.alert);
         return;
       }
 
       if (currentProduct) {
+        console.log(`entro2 ${currentProduct?.quantity} | ${payload.product.stock} `);
         currentProduct.quantity = currentProduct.quantity + payload.quantity;
       }
       else {
