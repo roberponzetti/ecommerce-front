@@ -13,6 +13,7 @@ import clx from 'classnames';
 import Counter from '../../components/counter/Counter';
 import Loading from '../../components/loading/Loading';
 import CustomButton from '../../components/button/CustomButton';
+import useScroll from '../../hooks/useScroll';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -23,9 +24,7 @@ const ProductDetail = () => {
 
   const outStock = selectedProduct?.stock === 0 || count > selectedProduct?.stock;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
+  useScroll();
 
   const handleAdd = () => {
     dispatch(addQuantity({ id: selectedProduct.id, quantity: count, product: selectedProduct }));

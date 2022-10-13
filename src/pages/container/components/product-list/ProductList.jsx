@@ -22,7 +22,6 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const valueMemo = useDebounce(filteredText);
 
-  console.log(valueMemo);
   const filteredProduct = products.filter((product) => product.title.toLowerCase().includes(valueMemo?.toLowerCase()));
 
   const handleShowMore = () => {
