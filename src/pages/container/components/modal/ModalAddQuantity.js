@@ -5,13 +5,13 @@ import clx from 'classnames';
 import CustomButton from '../../../../components/button/CustomButton';
 import Counter from '../../../../components/counter/Counter';
 import { useCounter } from '../../../../hooks/useCounter';
-import { addQuantity } from '../../../../redux/state/cart';
+import { addQuantity, openCartNavbar } from '../../../../redux/state/cart';
 import { BsFillCartFill } from "react-icons/bs";
 import style from "./style.module.css";
 import { priceFormatted } from '../../../../utilities';
 
 
-const ModalAddQuantity = ({ showModal, handleOpenModal, product }) => {
+const ModalAddQuantity = ({ showModal, handleOpenModal, product, setShowModal }) => {
 
   const dispatch = useDispatch();
   const { count, incrementAmount, decrementAmount, setCount } = useCounter();
@@ -20,7 +20,10 @@ const ModalAddQuantity = ({ showModal, handleOpenModal, product }) => {
 
   const handleAddToCart = () => {
     dispatch(addQuantity({ id: product.id, quantity: count, product: product }));
+    dispatch(openCartNavbar(true));
     setCount(1);
+    setShowModal(false)
+
   };
 
   return (

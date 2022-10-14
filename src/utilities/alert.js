@@ -1,16 +1,28 @@
-import Swal from "sweetalert2";
-import globalStyle from "../global-style/style.module.css";
+import { toast } from 'react-toastify';
 
-export const swalAlert = (variant = "success", title, timer = 1500) => {
-  console.log(globalStyle.alert)
-  Swal.fire({
-    position: 'center',
-    icon: variant,
-    title: title,
-    showConfirmButton: false,
-    timer: timer,
-    customClass: {
-      title: globalStyle.alert
-    }
-  })
+const config = {
+  position: "top-center",
+  autoClose: 1500,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
 }
+
+const alert = {
+  success(title) {
+
+    toast.success(title, {
+      ...config
+    });
+  },
+  danger(title) {
+    toast.error(title, {
+      ...config
+    });
+  }
+}
+
+export const swalAlert = (variant = "success", title, timer = 1500) => alert[variant](title)
