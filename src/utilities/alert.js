@@ -1,6 +1,8 @@
 import Swal from "sweetalert2";
+import globalStyle from "../global-style/style.module.css";
 
-export const swalAlert = (variant = "success", title, customClass = "", timer = 1500) => {
+export const swalAlert = (variant = "success", title, timer = 1500) => {
+  console.log(globalStyle.alert)
   Swal.fire({
     position: 'center',
     icon: variant,
@@ -8,7 +10,7 @@ export const swalAlert = (variant = "success", title, customClass = "", timer = 
     showConfirmButton: false,
     timer: timer,
     customClass: {
-      title: customClass
+      title: globalStyle.alert
     }
   })
 }

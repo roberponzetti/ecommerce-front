@@ -21,8 +21,6 @@ const NavbarItem = () => {
 
   const totalQuantity = cart.reduce((prevValue, currentValue) => prevValue + currentValue.quantity, 0);
 
-  console.log(totalQuantity);
-
   const handleBoxToggle = () => {
     setHoverCart(true)
   }

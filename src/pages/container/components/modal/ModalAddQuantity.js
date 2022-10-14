@@ -6,6 +6,7 @@ import CustomButton from '../../../../components/button/CustomButton';
 import Counter from '../../../../components/counter/Counter';
 import { useCounter } from '../../../../hooks/useCounter';
 import { addQuantity } from '../../../../redux/state/cart';
+import { BsFillCartFill } from "react-icons/bs";
 import style from "./style.module.css";
 import { priceFormatted } from '../../../../utilities';
 
@@ -39,7 +40,8 @@ const ModalAddQuantity = ({ showModal, handleOpenModal, product }) => {
         <Modal.Body className='d-flex justify-content-center flex-column align-items-center'>
           <h4 className='my-3'>{priceFormatted(product?.price)}</h4>
           <div className='d-flex justify-content-center align-items-center mt-3'>
-            <CustomButton handleAdd={handleAddToCart} outStock={outStock} >
+            <CustomButton handle={handleAddToCart} outStock={outStock} >
+              <BsFillCartFill />
               Agregar al carrito
             </CustomButton>
             <Counter

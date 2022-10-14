@@ -30,7 +30,7 @@ const CartNavbar = ({ handleBoxLeaveToggle }) => {
   return (
     <div className={style.show_cart} onMouseLeave={handleBoxLeaveToggle}>
       <div className='d-flex align-items-center justify-content-between'>
-        <h2 className="my-3">Cart</h2>
+        <h2 className="my-3">Carrito</h2>
         <div>
           {cart.length > 0 && <span onClick={handlerClearCart} className={clx("mt-2", style.button_vaciar)}>Vaciar carrito</span>}
           <BsXLg className={globalStyle.cursor_pointer} onClick={handleBoxLeaveToggle} />

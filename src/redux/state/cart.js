@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { swalAlert } from "../../utilities/alert";
-import globalStyle from "../../global-style/style.module.css";
 import { clearLocalStorage, getLocalStorage, setLocalStorage } from "../../utilities/localStorage";
 
 const KEY = "CART";
@@ -20,19 +19,17 @@ export const cartSlice = createSlice({
       let currentProduct = findProduct(state, payload.id);
 
       if (payload.product.stock === 0) {
-        swalAlert("error", "Producto sin stock", globalStyle.alert);
+        swalAlert("error", "Producto sin stock");
         return;
       };
 
       if (payload.quantity + currentProduct?.quantity > payload.product.stock) {
-        console.log(`entro ${currentProduct?.quantity} | ${payload.product.stock} `);
         currentProduct.quantity = payload.product.stock
-        swalAlert("error", "Producto sin stock", globalStyle.alert);
+        swalAlert("error", "Producto sin stock");
         return;
       }
 
       if (currentProduct) {
-        console.log(`entro2 ${currentProduct?.quantity} | ${payload.product.stock} `);
         currentProduct.quantity = currentProduct.quantity + payload.quantity;
       }
       else {
@@ -42,7 +39,7 @@ export const cartSlice = createSlice({
         })
       }
 
-      swalAlert("success", "Producto agregado al carrito", globalStyle.alert);
+      swalAlert("success", "Producto agregado al carrito");
       setLocalStorage(KEY, state.cart);
 
     },

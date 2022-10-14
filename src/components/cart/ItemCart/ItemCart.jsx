@@ -23,7 +23,7 @@ const ItemCart = ({ product }) => {
   }
 
   return (
-    <div className="d-flex justify-content-between mt-4 w-100 align-items-center" >
+    <div className="d-flex justify-content-between mt-4 w-100 align-items-center flex-xs-column flex-lg-row" >
       <InfoProduct product={product} />
       <div className='d-flex align-items-center'>
         <Counter
