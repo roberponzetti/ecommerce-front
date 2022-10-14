@@ -5,7 +5,7 @@ import { selectProduct } from '../../redux/state/product';
 import { useProductById } from '../../hooks/useProductById';
 import { Alert, Col, Container, Image, Row } from "react-bootstrap";
 import { priceFormatted } from "../../utilities"
-import { addQuantity } from '../../redux/state/cart';
+import { addQuantity, openCartNavbar } from '../../redux/state/cart';
 import { useCounter } from '../../hooks/useCounter';
 import { BsFillCartFill } from "react-icons/bs";
 import { GoBack } from '../../components/goBack';
@@ -29,6 +29,7 @@ const ProductDetail = () => {
 
   const handleAdd = () => {
     dispatch(addQuantity({ id: selectedProduct.id, quantity: count, product: selectedProduct }));
+    dispatch(openCartNavbar(true));
   }
 
   if (isLoading) return <Loading />
