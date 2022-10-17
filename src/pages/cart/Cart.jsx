@@ -8,43 +8,65 @@ import { priceFormatted, totalPrice } from "../../utilities";
 import style from './style.module.css';
 import clx from "classnames";
 import globalStyle from "../../global-style/style.module.css";
+import CustomButton from '../../components/button/CustomButton'
+import GoBack from "../../components/goBack/GoBack";
+
+const styleItemCart = {
+  height: '100px',
+  width: '100px',
+  fontSize: '16px'
+}
 
 const Cart = () => {
 
   const { cart } = useSelector(selectCart);
-
   useScroll();
 
-  console.log(style);
   return (
     <Container>
-      <Row>
-        <Col xs={8} className={globalStyle.mr_4}>
-          <ListGroup>
-            {cart.map((product, index) => (
-              <ListGroup.Item
-                className="d-flex justify-content-between align-items-start"
-              >
-                <ItemCart product={product} />
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </Col>
-        <Col xs={4} className={clx("p-4", style.container__summary)}>
-          <h2>Resumen de pedido</h2>
-          <div className='d-flex mt-5 flex-column'>
-            <div className='d-flex justify-content-between'>
-              <h5>Subtotal:</h5><span>{priceFormatted(totalPrice(cart))}</span>
+      <h2 className={style.my_cart}>Mi carrito</h2>
+      {cart.length > 0 ?
+        < Row >
+          <Col lg={8} className={globalStyle.mr_4}>
+            <ListGroup>
+              {cart.map((product, index) => (
+                <ListGroup.Item
+                  key={index}
+                  className={clx('d-flex justify-content-between align-items-start mt-3', style.container__summary)}
+                >
+                  <ItemCart product={product} style={styleItemCart} />
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </Col>
+          <Col lg={4} className={clx(style.container__summary, style.fixed__summary)}>
+            <h4 className="mt-3">Resumen de pedido</h4>
+            <div className='d-flex mt-5 flex-column'>
+              <div className='d-flex justify-content-between'>
+                <p>Subtotal:</p><span>{priceFormatted(totalPrice(cart))}</span>
+              </div>
+              <div className='d-flex justify-content-between'>
+                <p>Flete:</p><span>Gratis</span>
+              </div>
             </div>
-            <div className='d-flex justify-content-between'>
-              <h5>Flete:</h5><span>Gratis</span>
+            <div className='d-flex m-5 justify-content-center '>
+              <p>Total: <span>{priceFormatted(totalPrice(cart))}</span></p>
             </div>
-          </div>
-          <div className='d-flex m-5 justify-content-center '>
-            <h5>Total: <span>{priceFormatted(totalPrice(cart))}</span></h5>
-          </div>
-        </Col>
-      </Row>
+            <CustomButton handle={() => { alert('Confirmar compra') }} >
+
+              Confirmar compra
+            </CustomButton>
+          </Col>
+
+        </Row>
+        :
+        <div>
+          <img height={300} src="https://olsi-trade.ru/local/templates/olsi/img/icon/empty-basket.svg" alt="carrito vacio" />
+          <p className="mt-4">Tu carrito está vacío.</p>
+
+        </div>
+
+      }
     </Container>
   );
 };

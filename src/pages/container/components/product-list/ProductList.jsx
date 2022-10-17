@@ -39,7 +39,12 @@ const ProductList = () => {
 
   return (
     <Container>
-      <ModalAddQuantity showModal={showModal} handleOpenModal={handleOpenModal} product={selectedProduct} />
+      <ModalAddQuantity
+        showModal={showModal}
+        handleOpenModal={handleOpenModal}
+        product={selectedProduct}
+        setShowModal={setShowModal}
+      />
       <Row className="mt-5 d-flex justify-content-center">
         <Col xs={12} lg={6} className="position-relative">
           <input placeholder="Buscar producto..." type="text" className={style.input_search} onChange={(event) => setFilteredText(event.target.value)} />

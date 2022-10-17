@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { selectCart } from "../../redux/state/cart";
-import { useSelector } from "react-redux";
+import { openCartNavbar, selectCart } from "../../redux/state/cart";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { BiLogInCircle } from "react-icons/bi";
@@ -15,26 +14,23 @@ import globalStyle from "../../global-style/style.module.css"
 import { priceFormatted, totalPrice } from "../../utilities";
 
 const NavbarItem = () => {
-
-  const [hoverCart, setHoverCart] = useState(false);
-  const { cart } = useSelector(selectCart);
+  const dispatch = useDispatch()
+  const { cart, openCart } = useSelector(selectCart);
 
   const totalQuantity = cart.reduce((prevValue, currentValue) => prevValue + currentValue.quantity, 0);
 
-  console.log(totalQuantity);
-
   const handleBoxToggle = () => {
-    setHoverCart(true)
+    dispatch(openCartNavbar(true))
   }
 
   const handleBoxLeaveToggle = () => {
-    setHoverCart(false)
+    dispatch(openCartNavbar(false))
   }
 
   return (
     <Navbar variant="dark" className={style.navBar}>
       <Container>
-        {hoverCart && <div className={style.overlay}></div>}
+        {openCart && <div className={style.overlay}></div>}
         <div className="d-flex justify-content-center align-items-center">
           <Link className={clx(style.brand, "d-flex align-items-center")} to="/">
             <AiOutlineHome className={globalStyle.mr_1} />
@@ -54,7 +50,7 @@ const NavbarItem = () => {
           </Link>
           <span>{priceFormatted(totalPrice(cart))}</span>
         </div>
-        {hoverCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
+        {openCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
       </Container>
     </Navbar>
   );

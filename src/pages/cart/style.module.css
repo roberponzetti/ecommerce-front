@@ -52,4 +52,16 @@
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border: none !important;
+  padding: 20px 20px !important;
+}
+
+.fixed__summary {
+  max-height: 400px;
+  position: fixed;
+  right: 20px;
+}
+
+.my_cart {
+  margin: 30px 0px;
+  text-align: left;
 }

@@ -12,7 +12,7 @@ const InfoProduct = ({ product }) => {
 
   return (
     <>
-      <Image className={clx(styleGlobal.cursor_pointer, styleGlobal.mr_5)} height='50' src={product.image} alt="image-product" />
+      <Image className={clx(styleGlobal.cursor_pointer, styleGlobal.mr_5)} height='90' src={product.image} alt="image-product" />
       <div className='d-flex flex-column'>
         <p className={clx(styleGlobal.mr_3, style.title)}>{truncate(product.title, 25)}</p>
         <p className={clx(style.price_product)}>{priceFormatted(product.price)}</p>
