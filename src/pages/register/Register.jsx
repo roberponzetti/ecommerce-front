@@ -1,9 +1,8 @@
-import React from 'react'
+import { initializeApp } from 'firebase/app';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
@@ -18,14 +17,14 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-const Login = () => {
+const Register = () => {
 
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("entre");
-    signInWithEmailAndPassword(auth, form.email, form.password)
+    createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         console.log(userCredential);
         const user = userCredential.user;
@@ -40,7 +39,7 @@ const Login = () => {
 
   }
 
-  const handleLogin = (event) => {
+  const handleRegister = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value
@@ -49,18 +48,18 @@ const Login = () => {
 
   return (
     <div className="container">
-      <h1>Login</h1>
+      <h1>Register</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleLogin} required />
+          <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleRegister} required />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" placeholder="Password" onChange={handleLogin} required />
+          <Form.Control type="password" name="password" placeholder="Password" onChange={handleRegister} required />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
@@ -70,4 +69,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
