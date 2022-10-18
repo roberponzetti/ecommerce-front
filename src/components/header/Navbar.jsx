@@ -12,12 +12,18 @@ import clx from "classnames";
 import style from "./style.module.css";
 import globalStyle from "../../global-style/style.module.css"
 import { priceFormatted, totalPrice } from "../../utilities";
+import { logoutUser, selectAuth } from "../../redux/state/auth";
 
 const NavbarItem = () => {
   const dispatch = useDispatch()
   const { cart, openCart } = useSelector(selectCart);
+  const { user } = useSelector(selectAuth);
 
   const totalQuantity = cart.reduce((prevValue, currentValue) => prevValue + currentValue.quantity, 0);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  }
 
   const handleBoxToggle = () => {
     dispatch(openCartNavbar(true))
@@ -36,10 +42,17 @@ const NavbarItem = () => {
             <AiOutlineHome className={globalStyle.mr_1} />
             Home
           </Link>
-          <Link className={clx(style.outline, style.item_nav)} to="/login">
-            <BiLogInCircle className={globalStyle.mr_1} />
-            login
-          </Link>
+          {user ?
+            <Link className={clx(style.outline, style.item_nav)} onClick={handleLogout}>
+              <BiLogInCircle className={globalStyle.mr_1} />
+              Logout
+            </Link>
+            :
+            <Link className={clx(style.outline, style.item_nav)} to="/login">
+              <BiLogInCircle className={globalStyle.mr_1} />
+              Login
+            </Link>
+          }
         </div>
         <div className="d-flex align-items-center text-white fw-bold">
           <Link className={clx(style.item_nav)} onMouseOver={handleBoxToggle} to="/cart">

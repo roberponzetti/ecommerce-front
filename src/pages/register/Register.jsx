@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
@@ -19,24 +20,28 @@ const auth = getAuth(app);
 
 const Register = () => {
 
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "" });
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("entre");
-    createUserWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        const user = userCredential.user;
 
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error.message);
-
-      });
-
+    if (form.password !== form.confirmPassword) {
+      alert("Las contraseñas no coinciden");
+    } else {
+      console.log("entre");
+      createUserWithEmailAndPassword(auth, form.email, form.password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          const user = userCredential.user;
+          navigate('/login');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(error.message);
+        });
+    }
   }
 
   const handleRegister = (event) => {
@@ -60,6 +65,10 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" name="password" placeholder="Password" onChange={handleRegister} required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+          <Form.Label>Confirm password</Form.Label>
+          <Form.Control type="password" name="confirmPassword" placeholder="Confirm password" onChange={handleRegister} required />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit

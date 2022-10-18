@@ -4,6 +4,9 @@ import Form from 'react-bootstrap/Form';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/state/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
@@ -21,6 +24,8 @@ const auth = getAuth(app);
 const Login = () => {
 
   const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +34,13 @@ const Login = () => {
       .then((userCredential) => {
         console.log(userCredential);
         const user = userCredential.user;
-
+        navigate('/');
+        dispatch(loginUser(user));
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error.message);
-
       });
 
   }
