@@ -13,7 +13,6 @@ const config = {
 
 const alert = {
   success(title) {
-
     toast.success(title, {
       ...config
     });
@@ -25,4 +24,4 @@ const alert = {
   }
 }
 
-export const swalAlert = (variant = "success", title, timer = 1500) => alert[variant](title)
+export const swalAlert = (variant = "success", title) => alert[variant](title)

@@ -5,9 +5,11 @@ import { NotFound } from "../pages/not-found";
 import { routes } from "../pages/routes";
 import { Layout } from "../components/Layout";
 import { useProduct } from "../hooks/useProduct";
+import { useAuth } from "../hooks/useAuth";
 
 const RoutesComponent = () => {
   const { isLoading } = useProduct();
+  useAuth();
 
   if (isLoading) return <Loading />
 

@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     loginUser: (state, { payload }) => {
       state.user = payload
     },
-    logoutUser: (state, { payload }) => {
+    logoutUser: (state) => {
       state.user = null
     },
   },

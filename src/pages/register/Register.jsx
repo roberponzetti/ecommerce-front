@@ -1,46 +1,29 @@
-import { initializeApp } from 'firebase/app';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN_FIREBASE,
-  projectId: process.env.REACT_APP_PROJECT_ID_FIREBASE,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET_FIREBASE,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID_KEY_FIREBASE,
-  appId: process.env.REACT_APP_APP_ID_FIREBASE,
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
+import { authRegister } from '../../firebase/Models/Auth/auth.service';
+import { swalAlert } from '../../utilities/alert';
 
 const Register = () => {
 
   const [form, setForm] = useState({ email: "", password: "", confirmPassword: "" });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      setError("Las contraseñas no coinciden");
     } else {
-      console.log("entre");
-      createUserWithEmailAndPassword(auth, form.email, form.password)
-        .then((userCredential) => {
-          console.log(userCredential);
-          const user = userCredential.user;
-          navigate('/login');
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(error.message);
-        });
+      const registerUser = await authRegister(form.email, form.password);
+      if (registerUser?.error) {
+        setError(registerUser.error);
+      } else {
+        swalAlert("success", "Usuario registrado correctamente.");
+        navigate('/login');
+      }
     }
   }
 
@@ -58,9 +41,6 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleRegister} required />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
@@ -71,8 +51,9 @@ const Register = () => {
           <Form.Control type="password" name="confirmPassword" placeholder="Confirm password" onChange={handleRegister} required />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          Validar
         </Button>
+        {error && <p className="text-danger">{error}</p>}
       </Form>
     </div >
   )
