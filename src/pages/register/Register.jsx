@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
@@ -40,35 +40,34 @@ const Register = () => {
   }
 
   return (
-    <Row className='d-flex justify-content-center'>
-      <Col md={5}>
-        <div className="container border p-5">
-          <h2 className='my-5'>Creá tu cuenta</h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className='mb-3'>Email </Form.Label>
-              <Form.Control className='p-3' type="email" name="email" placeholder="Email" onChange={handleRegister} required />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label className='mb-3'>Contraseña</Form.Label>
-              <Form.Control className='p-3' type="password" name="password" placeholder="Contraseña" onChange={handleRegister} required />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-              <Form.Label className='mb-3'>Confirmar contraseña</Form.Label>
-              <Form.Control className='p-3' type="password" name="confirmPassword" placeholder="Confirmar contraseña" onChange={handleRegister} required />
-            </Form.Group>
-            <Button className='px-5 py-2 mt-3 w-100' variant="dark" type="submit">
-              {loading ?
-                <Spinner animation="border" role="status" variant="white" size="md">
-                  <span className="visually-hidden">cargando...</span>
-                </Spinner >
-                : 'Registrarse'}
-            </Button>
-            {error && <p className="text-danger mt-3">{error}</p>}
-          </Form>
-        </div >
-      </Col>
-    </Row>
+    <Container>
+      <Row className='d-flex justify-content-center'>
+        <Col md={5}>
+          <div className="container border p-5">
+            <h2 className='mb-5'>Creá tu cuenta</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3 " controlId="formBasicEmail">
+                <Form.Control className='p-2 px-3' type="email" name="email" placeholder="Ingresa tu email" onChange={handleRegister} required />
+              </Form.Group>
+              <Form.Group className="mb-3 mt-4" controlId="formBasicPassword">
+                <Form.Control className='p-2 px-3' type="password" name="password" placeholder="Ingresa tu contraseña" onChange={handleRegister} required />
+              </Form.Group>
+              <Form.Group className="mb-3 mt-4" controlId="formBasicConfirmPassword">
+                <Form.Control className='p-2 px-3' type="password" name="confirmPassword" placeholder="Confirmá tu contraseña" onChange={handleRegister} required />
+              </Form.Group>
+              <Button className='px-5 py-2 mt-3 w-100' variant="dark" type="submit">
+                {loading ?
+                  <Spinner animation="border" role="status" variant="white" size="sm">
+                    <span className="visually-hidden">cargando...</span>
+                  </Spinner >
+                  : 'Registrarse'}
+              </Button>
+              {error && <p className="text-danger mt-3">{error}</p>}
+            </Form>
+          </div >
+        </Col>
+      </Row>
+    </Container>
 
   )
 }

@@ -27,6 +27,11 @@
   text-decoration: none;
   margin-right: 7px;
   border-radius: inherit;
+  font-size: 14px;
+}
+
+.info_user {
+  font-size: 14px;
 }
 
 .item_nav,

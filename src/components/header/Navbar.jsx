@@ -59,10 +59,10 @@ const NavbarItem = () => {
           <div className="me-5 d-flex align-items-center justify-content-start">
             {user &&
               <>
-                <FaUser className='me-3' size={25} />
+                <FaUser className='me-3' size={20} />
                 <div>
-                  <p className="text-white text-start m-0 p-0 fw-bold">¡HOLA!</p>
-                  <p className="text-white m-0 p-0 font-weight-light">{user?.displayName ? user.displayName : user?.email}</p>
+                  <p className={clx(style.info_user, "text-white text-start m-0 p-0 fw-bold")} >¡HOLA!</p>
+                  <p className={clx(style.info_user, "text-white m-0 p-0 font-weight-light")}>{user?.displayName ? user.displayName : user?.email}</p>
                 </div>
               </>
             }
