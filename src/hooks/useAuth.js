@@ -12,7 +12,11 @@ export const useAuth = () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(loginUser(user));
+        const userCredencial = {
+          displayName: user.displayName,
+          email: user.email,
+        }
+        dispatch(loginUser(userCredencial));
       } else {
         dispatch(logoutUser());
       }

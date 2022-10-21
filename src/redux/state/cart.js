@@ -62,7 +62,6 @@ export const cartSlice = createSlice({
     },
 
     openCartNavbar: (state, { payload }) => {
-      console.log(payload)
       state.openCart = payload;
     },
   },

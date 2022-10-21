@@ -63,7 +63,7 @@ const ProductList = () => {
       </Row>
       <Row className="mt-5">
         <Col>
-          {count < products.length && <button className={style.button_add_cart} onClick={handleShowMore}>Show more</button>}
+          {count < products.length && <button className={style.button_add_cart} onClick={handleShowMore}>Mostrar más</button>}
         </Col>
       </Row>
     </Container>

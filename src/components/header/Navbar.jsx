@@ -13,6 +13,7 @@ import style from "./style.module.css";
 import globalStyle from "../../global-style/style.module.css"
 import { priceFormatted, totalPrice } from "../../utilities";
 import { logoutUser, selectAuth } from "../../redux/state/auth";
+import { FaUser } from "react-icons/fa";
 
 const NavbarItem = () => {
   const dispatch = useDispatch()
@@ -40,21 +41,32 @@ const NavbarItem = () => {
         <div className="d-flex justify-content-center align-items-center">
           <Link className={clx(style.brand, "d-flex align-items-center")} to="/">
             <AiOutlineHome className={globalStyle.mr_1} />
-            Home
+            Inicio
           </Link>
           {user ?
             <Link className={clx(style.outline, style.item_nav)} onClick={handleLogout}>
-              <BiLogInCircle className={globalStyle.mr_1} />
-              Logout
+              <RiLogoutCircleLine className={globalStyle.mr_1} />
+              Cerrar sesión
             </Link>
             :
             <Link className={clx(style.outline, style.item_nav)} to="/login">
               <BiLogInCircle className={globalStyle.mr_1} />
-              Login
+              Iniciar sesión
             </Link>
           }
         </div>
-        <div className="d-flex align-items-center text-white fw-bold">
+        <div className="d-flex align-items-center text-white ">
+          <div className="me-5 d-flex align-items-center justify-content-start">
+            {user &&
+              <>
+                <FaUser className='me-3' size={25} />
+                <div>
+                  <p className="text-white text-start m-0 p-0 fw-bold">¡HOLA!</p>
+                  <p className="text-white m-0 p-0 font-weight-light">{user?.displayName ? user.displayName : user?.email}</p>
+                </div>
+              </>
+            }
+          </div>
           <Link className={clx(style.item_nav)} onMouseOver={handleBoxToggle} to="/cart">
             <AiOutlineShoppingCart className={globalStyle.mr_1} size={25} />
             <span className={clx(style.badge, "rounded-pill", "badge-notification")}>
