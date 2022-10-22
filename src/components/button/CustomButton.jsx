@@ -10,7 +10,6 @@ const CustomButton = ({ outStock = false, handle, children, ...rest }) => {
       onClick={handle}
       {...rest}
     >
-
       {children}
     </button>
   )

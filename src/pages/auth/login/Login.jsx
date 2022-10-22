@@ -4,10 +4,14 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authLogin } from '../../firebase/Models/Auth/auth.service';
-import { loginUser } from '../../redux/state/auth';
-import { swalAlert } from '../../utilities/alert';
+import { authLogin } from '../../../firebase/Models/Auth/auth.service';
+import { loginUser } from '../../../redux/state/auth';
+import { swalAlert } from '../../../utilities/alert';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
+import { BiLockAlt } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
+import clx from 'classnames';
+import style from '../style.module.css'
 
 const Login = () => {
 
@@ -51,11 +55,13 @@ const Login = () => {
           <div className="container border p-5">
             <h2 className='mb-5'>Mi cuenta</h2>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control className='p-2 px-3' type="email" name="email" placeholder="Ingresa tu email" onChange={handleLogin} required />
+              <Form.Group className="mb-3 position-relative" controlId="formBasicEmail">
+                <BiUser className={clx('mb-2', style.icon__input)} />
+                <Form.Control className={'p-2 px-5'} type="email" name="email" placeholder="Ingresa tu email" onChange={handleLogin} required />
               </Form.Group>
-              <Form.Group className="mb-3 mt-4" controlId="formBasicPassword">
-                <Form.Control className='p-2 px-3' type="password" name="password" placeholder="Ingresa tu contraseña" onChange={handleLogin} required />
+              <Form.Group className="mb-3 mt-4 position-relative" controlId="formBasicPassword">
+                <BiLockAlt className={clx('mb-2', style.icon__input)} />
+                <Form.Control className='p-2 px-5' type="password" name="password" placeholder="Ingresa tu contraseña" onChange={handleLogin} required />
               </Form.Group>
               <div className='mt-5 d-flex flex-column justify-center align-items-center'>
                 <Button className='px-5 py-2 w-100' variant="dark" type="submit">

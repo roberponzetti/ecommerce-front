@@ -9,6 +9,7 @@ import style from './style.module.css';
 import clx from "classnames";
 import globalStyle from "../../global-style/style.module.css";
 import CustomButton from '../../components/button/CustomButton'
+import GoBack from "../../components/goBack/GoBack";
 
 const styleItemCart = {
   height: '100px',
