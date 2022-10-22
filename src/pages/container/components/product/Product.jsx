@@ -21,6 +21,7 @@ const Product = ({ product, handleToDetail, handleOpenModal }) => {
           variant="top"
           src={product.image !== "" ? product.image : ""}
           className={clx(style.heightImage, style.fit_contain)}
+          loading="lazy"
         />
         <Card.Body>
           <Card.Title className={style.fontSize_titleCard}>
