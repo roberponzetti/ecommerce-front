@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authLogin } from '../../../firebase/Models/Auth/auth.service';
-import { loginUser } from '../../../redux/state/auth';
+import { loginUser, selectAuth } from '../../../redux/state/auth';
 import { swalAlert } from '../../../utilities/alert';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { BiLockAlt } from "react-icons/bi";
@@ -18,8 +18,15 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { user } = useSelector(selectAuth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user != null) {
+      navigate('/');
+    }
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +35,6 @@ const Login = () => {
 
     if (loginResponse?.error) {
       setError(loginResponse.error);
-
     } else {
       const userCredencial = {
         displayName: loginResponse.user.displayName,

@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, ListGroup, Container, Row } from "react-bootstrap";
 import ItemCart from "../../components/cart/ItemCart/ItemCart";
-import { selectCart } from "../../redux/state/cart";
+import { cartSlice, clearCart, selectCart } from "../../redux/state/cart";
 import useScroll from "../../hooks/useScroll";
 import { priceFormatted, totalPrice } from "../../utilities";
 import style from './style.module.css';
@@ -10,17 +10,51 @@ import clx from "classnames";
 import globalStyle from "../../global-style/style.module.css";
 import CustomButton from '../../components/button/CustomButton'
 import GoBack from "../../components/goBack/GoBack";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../../firebase/config";
+import { selectAuth } from "../../redux/state/auth";
+import { swalAlert } from "../../utilities/alert";
+import { useNavigate } from "react-router-dom";
 
 const styleItemCart = {
   height: '100px',
   width: '100px',
   fontSize: '16px'
-}
+};
 
 const Cart = () => {
 
   const { cart } = useSelector(selectCart);
+  const { user } = useSelector(selectAuth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useScroll();
+
+  const handlePurchase = async () => {
+
+    const db = getFirestore(initializeApp(firebaseConfig));
+    const date = new Date().toLocaleDateString();
+
+    const buyer = {
+      email: user.email,
+      name: user?.displayName || '',
+      phone: '',
+      date: date,
+      items: cart
+    };
+
+    try {
+      const docRef = await addDoc(collection(db, "buyer"), buyer);
+      console.log("Document written with ID: ", docRef.id);
+      swalAlert("success", "Compra realizada satisfactoriamente. Su compra ha sido generada con el id nro: " + docRef.id);
+      dispatch(clearCart());
+      navigate('/');
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 
   return (
     <Container>
@@ -52,12 +86,10 @@ const Cart = () => {
             <div className='d-flex m-5 justify-content-center '>
               <p>Total: <span>{priceFormatted(totalPrice(cart))}</span></p>
             </div>
-            <CustomButton handle={() => { alert('Confirmar compra') }} >
-
+            <CustomButton handle={handlePurchase} >
               Confirmar compra
             </CustomButton>
           </Col>
-
         </Row>
         :
         <div>

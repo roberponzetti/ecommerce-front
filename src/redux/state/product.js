@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
   products: [],
   selectedProduct: {},
@@ -25,7 +24,6 @@ export const productSlice = createSlice({
         state.count = state.products.length
       }
     },
-
 
   },
 });

@@ -24,16 +24,16 @@ const Register = () => {
     if (form.password !== form.confirmPassword) {
       setError("Las contraseñas no coinciden");
     } else {
-      setLoading(true)
+      setLoading(true);
       const registerUser = await authRegister(form.email, form.password);
       if (registerUser?.error) {
         setError(registerUser.error);
       } else {
         swalAlert("success", "Usuario registrado correctamente.");
-        navigate('/login');
+        navigate('/');
       }
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   const handleRegister = (event) => {
