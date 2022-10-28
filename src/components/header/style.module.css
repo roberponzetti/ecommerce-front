@@ -79,3 +79,13 @@
   color: rgb(20, 20, 20);
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .brand {
+    font-size: 14px;
+  }
+
+  .item_nav {
+    font-size: 14px;
+  }
+}

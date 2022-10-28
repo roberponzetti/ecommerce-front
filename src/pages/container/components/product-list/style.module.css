@@ -38,3 +38,9 @@
   transform: translateY(-50%);
   right: 30px;
 }
+
+@media (max-width: 768px) {
+  .button_add_cart {
+    font-size: 14px;
+  }
+}

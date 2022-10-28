@@ -13,7 +13,6 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase/config";
 import { selectAuth } from "../../redux/state/auth";
-import { purchaseAlert } from "../../utilities/alert";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -56,9 +55,16 @@ const Cart = () => {
           denyButtonText: 'No',
           confirmButtonColor: '#6B8CBD',
           denyButtonColor: '#BD816B',
+          customClass: {
+            title: style.title_sweet_alert,
+          }
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire({ title: 'Compra realizada satisfactoriamente. Su nro. de pedido es: ' + docRef.id, confirmButtonColor: '#8CBD6B', icon: 'success' });
+            Swal.fire({
+              title: 'Compra realizada satisfactoriamente. Su nro. de pedido es: ' + docRef.id, confirmButtonColor: '#8CBD6B', icon: 'success', customClass: {
+                title: style.title_sweet_alert,
+              }
+            });
             dispatch(clearCart());
             navigate('/');
           }
@@ -99,7 +105,7 @@ const Cart = () => {
               </div>
             </div>
             <div className='d-flex m-5 justify-content-center '>
-              <p>Total: <span>{priceFormatted(totalPrice(cart))}</span></p>
+              <p className="fw-bold">Total: <span>{priceFormatted(totalPrice(cart))}</span></p>
             </div>
             <CustomButton handle={handlePurchase} >
               Confirmar compra

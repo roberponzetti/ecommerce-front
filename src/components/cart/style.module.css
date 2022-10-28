@@ -58,3 +58,12 @@
 .title_total {
   margin-right: 12px;
 }
+
+@media (max-width: 768px) {
+  .show_cart {
+    min-width: 100%;
+  }
+  .button_cart {
+    width: 100%;
+  }
+}

@@ -36,18 +36,17 @@ const ProductDetail = () => {
 
   return (
     <Fragment>
-
       {selectedProduct !== null ?
         <Container >
           <GoBack />
           <div className='d-flex justify-content-center align-items-center mt-5'>
             <Row className="d-flex justify-content-center align-items-center ">
               <Col
-                sm={4}
+                lg={4}
               >
                 <Image className={clx(style.object_fit, style.image_product)} src={selectedProduct.image !== "" ? selectedProduct.image : ""} height="300"></Image>
               </Col>
-              <Col sm={7}>
+              <Col lg={7}>
                 <h2 className={style.title_product}>{selectedProduct.title}</h2>
                 <span className={style.price_formatted}>{priceFormatted(selectedProduct.price)}</span>
                 <p className={style.short_description}>{selectedProduct.shortDescription}</p>

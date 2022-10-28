@@ -11,7 +11,7 @@ const Product = ({ product, handleToDetail, handleOpenModal }) => {
   return (
     <Col
       xs={12}
-      md={4}
+      md={6}
       lg={3}
       className="mt-5 position-relative"
     >

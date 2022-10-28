@@ -12,3 +12,9 @@
   opacity: 0.3;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .button_add_cart {
+    font-size: 14px;
+  }
+}

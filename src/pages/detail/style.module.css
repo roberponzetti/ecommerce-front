@@ -87,3 +87,29 @@
 .success {
   color: green;
 }
+
+@media (max-width: 1023px) {
+  .image_product {
+    margin-right: 0px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image_product {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+  .title_product {
+    margin-top: 20px;
+    font-size: 25px;
+  }
+  .price_formatted {
+    font-size: 30px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .stock {
+    font-size: 14px;
+  }
+}
