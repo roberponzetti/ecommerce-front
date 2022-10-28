@@ -2,20 +2,20 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, ListGroup, Container, Row } from "react-bootstrap";
 import ItemCart from "../../components/cart/ItemCart/ItemCart";
-import { cartSlice, clearCart, selectCart } from "../../redux/state/cart";
+import { clearCart, selectCart } from "../../redux/state/cart";
 import useScroll from "../../hooks/useScroll";
 import { priceFormatted, totalPrice } from "../../utilities";
 import style from './style.module.css';
 import clx from "classnames";
 import globalStyle from "../../global-style/style.module.css";
 import CustomButton from '../../components/button/CustomButton'
-import GoBack from "../../components/goBack/GoBack";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../../firebase/config";
 import { selectAuth } from "../../redux/state/auth";
-import { swalAlert } from "../../utilities/alert";
+import { purchaseAlert } from "../../utilities/alert";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const styleItemCart = {
   height: '100px',
@@ -34,25 +34,40 @@ const Cart = () => {
 
   const handlePurchase = async () => {
 
-    const db = getFirestore(initializeApp(firebaseConfig));
-    const date = new Date().toLocaleDateString();
+    if (user) {
+      const db = getFirestore(initializeApp(firebaseConfig));
+      const date = new Date().toLocaleDateString();
 
-    const buyer = {
-      email: user.email,
-      name: user?.displayName || '',
-      phone: '',
-      date: date,
-      items: cart
-    };
+      const buyer = {
+        email: user.email,
+        name: user?.displayName || '',
+        phone: '',
+        date: date,
+        items: cart
+      };
 
-    try {
-      const docRef = await addDoc(collection(db, "buyer"), buyer);
-      console.log("Document written with ID: ", docRef.id);
-      swalAlert("success", "Compra realizada satisfactoriamente. Su compra ha sido generada con el id nro: " + docRef.id);
-      dispatch(clearCart());
-      navigate('/');
-    } catch (e) {
-      console.error("Error adding document: ", e);
+      try {
+        const docRef = await addDoc(collection(db, "buyer"), buyer);
+        Swal.fire({
+          title: '¿Está seguro que desea finalizar la compra?',
+          showDenyButton: true,
+          showCancelButton: false,
+          confirmButtonText: 'Si',
+          denyButtonText: 'No',
+          confirmButtonColor: '#6B8CBD',
+          denyButtonColor: '#BD816B',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({ title: 'Compra realizada satisfactoriamente. Su nro. de pedido es: ' + docRef.id, confirmButtonColor: '#8CBD6B', icon: 'success' });
+            dispatch(clearCart());
+            navigate('/');
+          }
+        })
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    } else {
+      navigate("/login");
     }
   }
 
