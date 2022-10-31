@@ -5,3 +5,11 @@ body {
   margin: 0;
   font-family: Montserrat !important;
 }
+
+a:hover {
+  background-color: transparent;
+}
+
+.dropdown-item:hover {
+  background-color: transparent !important;
+}

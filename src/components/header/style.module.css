@@ -81,11 +81,7 @@
 }
 
 @media (max-width: 768px) {
-  .brand {
-    font-size: 14px;
-  }
-
   .item_nav {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 }

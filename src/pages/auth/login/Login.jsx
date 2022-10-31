@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authLogin } from '../../../firebase/Models/Auth/auth.service';
 import { loginUser, selectAuth } from '../../../redux/state/auth';
@@ -18,15 +18,10 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { user } = useSelector(selectAuth);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user != null) {
-      navigate('/');
-    }
-  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +56,7 @@ const Login = () => {
           <div className="container border p-5">
             <h2 className='mb-5'>Mi cuenta</h2>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3 position-relative" controlId="formBasicEmail">
+              <Form.Group className="mb-3 mt-4  position-relative" controlId="formBasicEmail">
                 <BiUser className={clx('mb-2', style.icon__input)} />
                 <Form.Control className={'p-2 px-5'} type="email" name="email" placeholder="Ingresa tu email" onChange={handleLogin} required />
               </Form.Group>

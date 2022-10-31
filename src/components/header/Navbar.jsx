@@ -40,7 +40,7 @@ const NavbarItem = () => {
   }
 
   return (
-    <Navbar variant="dark" className={style.navBar} expand="sm">
+    <Navbar variant="dark" className={style.navBar} expand="lg">
       <Container>
         {openCart && <div className={style.overlay}></div>}
         <div className="d-flex justify-content-center align-items-center">
@@ -49,56 +49,36 @@ const NavbarItem = () => {
             Inicio
           </Link>
           <div className="d-flex align-items-center text-white ">
-            {/* {user ? ( */}
-            {/* <> */}
             <FaUser className='me-3' size={20} />
             <div>
               <NavDropdown
                 title={user?.displayName ? user.displayName : user?.email}
+                className={style.name_user}
               >
                 {user ?
                   <NavDropdown.Item className="p-0">
-                    <Button className={clx(style.outline, style.item_nav, "text-dark", "border-0")} onClick={handleLogout} variant="outline-light">
+                    <Button className={clx(style.item_nav, "text-dark", "border-0")} onClick={handleLogout} variant="outline-light">
                       <RiLogoutCircleLine className={globalStyle.mr_1} />
                       Cerrar sesión
                     </Button>
                   </NavDropdown.Item>
                   :
                   <NavDropdown.Item>
-                    <Button className={clx(style.outline, style.item_nav, "text-dark", "border-0")} onClick={handleLogin} variant="outline-light">
+                    <Button className={clx(style.item_nav, "text-dark", "border-0")} onClick={handleLogin} variant="outline-light">
                       <BiLogInCircle className={globalStyle.mr_1} />
                       Iniciar sesión
                     </Button>
                   </NavDropdown.Item>
                 }
               </NavDropdown>
-              {/* <p className={clx(style.info_user, "text-white text-start m-0 p-0 fw-bold")} >¡HOLA!</p>
-                  <p className={clx(style.info_user, "text-white m-0 p-0 font-weight-light")}>{user?.displayName ? user.displayName : user?.email}</p> */}
-            </div>
-            {/* </> */}
-            {/* ) : (
 
-            )} */}
+            </div>
           </div>
         </div>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle aria-controls="basic-navbar-na" />
 
-        <div className="d-flex align-items-center text-white ">
-          <Navbar.Collapse id="navbarScroll">
-            {/* <div className="me-5 d-flex align-items-center justify-content-start"> */}
-            {/* {user ?
-                <Link className={clx(style.outline, style.item_nav)} onClick={handleLogout}>
-                  <RiLogoutCircleLine className={globalStyle.mr_1} />
-                  Cerrar sesión
-                </Link>
-                :
-                <Link className={clx(style.outline, style.item_nav)} to="/login">
-                  <BiLogInCircle className={globalStyle.mr_1} />
-                  Iniciar sesión
-                </Link>
-              } */}
-
-            {/* </div> */}
+        <Navbar.Collapse id="basic-navbar-na" className="text-white justify-content-end">
+          <div className="my-3 d-flex ">
             <Link className={clx(style.item_nav)} onMouseOver={handleBoxToggle} to="/cart">
               <AiOutlineShoppingCart className={globalStyle.mr_1} size={25} />
               <span className={clx(style.badge, "rounded-pill", "badge-notification")}>
@@ -106,10 +86,11 @@ const NavbarItem = () => {
               </span>
             </Link>
             <span>{priceFormatted(totalPrice(cart))}</span>
-          </Navbar.Collapse>
-        </div>
-        {openCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
+          </div>
 
+        </Navbar.Collapse>
+
+        {openCart && <CartNavbar handleBoxLeaveToggle={handleBoxLeaveToggle} />}
       </Container>
     </Navbar >
   );

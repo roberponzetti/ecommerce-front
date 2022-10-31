@@ -5,7 +5,7 @@ export const authLogin = async (email, password) => {
   return await auth.login(email, password);
 };
 
-export const authRegister = async (email, password) => {
+export const authRegister = async (email, password, name) => {
   const auth = new Auth();
-  return await auth.register(email, password);
+  return await auth.register(email, password, name);
 };

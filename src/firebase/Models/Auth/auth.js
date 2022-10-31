@@ -1,5 +1,5 @@
 import { Firebase } from "../../firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export class Auth extends Firebase {
   constructor(nameCollection) {
@@ -14,6 +14,7 @@ export class Auth extends Firebase {
     try {
       const userCredential = await signInWithEmailAndPassword(this._auth, email, password)
       userResponse.user = userCredential.user;
+
     } catch (error) {
       userResponse.error = error.message;
     }
@@ -22,13 +23,16 @@ export class Auth extends Firebase {
 
   }
 
-  async register(email, password) {
+  async register(email, password, name) {
 
     const userResponse = {};
 
     try {
       const userCredential = await createUserWithEmailAndPassword(this._auth, email, password)
+      await updateProfile(this._auth.currentUser, { displayName: name })
+
       userResponse.user = userCredential.user;
+
     } catch (error) {
       userResponse.error = error.message;
     }
